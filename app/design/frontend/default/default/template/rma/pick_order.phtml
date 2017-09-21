@@ -1,0 +1,43 @@
+<?php $timeAllowed = "20 years ago"; ?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $_orders = $this->getOrders(); ?>
+<div class="page-head">
+    <h3><?php echo $this->__('Create RMA') ?></h3>
+</div>
+<?php if($_orders->getSize()): ?>
+<table cellspacing="0" class="data-table" id="my-orders-table">
+    <thead>
+        <tr>
+            <th><?php echo $this->__('Order #') ?></th>
+            <th><?php echo $this->__('Date') ?></th>
+            <th><?php echo $this->__('Ship to') ?></th>
+            <th><?php echo $this->__('Order Total') ?></th>
+            <th><?php echo $this->__('Order Status') ?></th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $_odd = ''; ?>
+        <?php foreach ($_orders as $_order): ?>
+        <?php if( ($_order->getStoreId() == Mage::app()->getStore()->getStoreId()) && (strtotime($_order->getCreatedAt()) > strtotime($timeAllowed)) ) { ?>
+        	<tr>
+                <td><?php echo $_order->getRealOrderId() ?></td>
+                <td><?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></td>
+                <td><?php echo $_order->getShippingAddress() ? $this->htmlEscape($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
+                <td><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></td>
+                <td><em><?php echo $_order->getStatusLabel() ?></em></td>
+                <td class="a-center">
+						<?php //if ($_order->getStatusLabel() == "Complete"):?>
+                        <a href="<?php echo $this->getUrl( 'rma/pickitems', array( 'order_id' => $_order->getId() ) ) ?>"><?php echo $this->__('Request RMA') ?></a>
+                        <?php //endif; ?>
+                </td>
+            </tr>
+        <?php } ?>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-orders-table')</script>
+<?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+    <p><?php echo $this->__('You have placed no orders.'); ?></p>
+<?php endif ?>

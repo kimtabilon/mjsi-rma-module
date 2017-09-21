@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <sections>
+    <rma module="rma">
+      <label>RMA Module Configuration</label>
+      <tab>sales</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>999</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <rma>
+          <label>RMA Email Setup</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>5</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <emailname translate="label">
+              <label>Email Name (From)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </emailname>
+            <emailaddress translate="label">
+              <label>Email Address</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>11</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </emailaddress>
+		  </fields>
+        </rma>
+      </groups>
+	  <groups>
+        <rma2>
+          <label>Included in the Box</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>10</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <includedbox translate="label">
+              <label>Included in the Box (Separate each item with a comma ",")</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>12</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </includedbox>
+		  </fields>
+        </rma2>
+      </groups>
+    </rma>
+  </sections>
+</config>
